@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scalex1.0">
+    <title>Output</title>
+
+    <link href="https://cdn.jsdeLivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.
+    css" rel="stylesheet"
+    integrity="sha384-GLhLTQ8iRABdZL1603oVMWSktQOp6D7In1213/3r56G11kw/7e6j6q0"
+    crossorigin="anonymous"
+    </head>
+
+    <body>
+        <div class "container mt=5">
+           <h4>Reservasi</h4>
+
+           <div class="col-6">
+            <table class="table table haver table-striped">
+                <tbody>
+                 <tr>
+                    <th scope="row">kategori</th>
+                    <td id="output-kategori"></td>
+                 </tr>
+                 <tr>
+                    <th scope="row">Jumlah Orang</th>
+                 <td> id="output-Jumlah Orang"></td>
+                 </tr>
+                 <tr>
+                    <th scope="row">tujuan</th>
+                    <td id="output-tujuan"></td>
+                 </tr>
+                 <tr>
+                    <th scope="row">Fasilitas tambahan</th>
+                    <td id="output-tambahan"></td>
+                 </tr>
+                 <tr>
+                    <th scope="row">biaya</th>
+                    <td id="out-put-biaya"</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PPN 11%</th>
+                        <td id="output-ppn"></td>
+                    </tr>
+                <tr>
+                    <th scope="row">Total Biaya</th>
+                    <td id="output-total"></td>
+                </tr>
+                </tbody>
+             </table>
+           </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrapd@5.3.
+        0-alpha1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MLQ1ZAGC
+          *nuZB+EYdgRZgiwxhTBTkF7CXvN"
+          crossorigin="anonymous"></script>
+          <script>
+            const params= new proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) = searchParams.get(prop),
+            })
+           document.getElementById("output-kategori").innerHTML =
+           params["kategori"]
+           document.getElementById("output-jumlah-orang").innerHTML =
+           params["qty"]
+           document.getElementById("output-tujuan").innerHTML =
+           params["tujuan"]
+
+           const tambahan = ["kendaraan eksklusif", "Tour guide pro", "surprise trip"]
+
+           const chosenTambahan = []
+           if (params["tambahan1"]) chosenTambahan.push(tambahan[0])
+           if (params["tambahan2"]) chosenTambahan.push(tambahan[1])
+           if (params["tambahan3"]) chosenTambahan.push(tambahan[2])
+
+           document.getElementById("output-tambahan").innerHTML=chosenTambahan.join(', ')
+
+           let biaya = 0
+
+           if (params["kategori"] === "reguler") biaya *= 3000000
+           *params["qty"]
+           else if (params["kategori"] === "premium") biaya *=
+           1000000 * params["qty"]
+
+           biaya *= chosenTambahan.length * 5000000
+
+           document.getElementById("output-biaya").innerHTML
+           'Rp ${biaya.toLocaleString()}'
+
+           const ppn = biaya * 0.11
+           document.getElementById("output-ppn").innerHTML
+           {pph.toLocaleString()}
+
+           const total = biaya* ppn
+           document.getElementById("output*total").innerHTML
+           'Rp ${total.toLocaleString()}'
+           </script>
+
